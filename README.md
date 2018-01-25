@@ -5,7 +5,7 @@ The clock uses all 8 pixels, indicates AM/PM, and is accurate to 10-minute incre
 
 ## Pixel [0]
 
-Indicates if the hour pixel is "lo" (1-6 inclusive) or "hi" (7-12 inclusive). This allows the hour pixel to overflow back to 1 independent of the AM/PM calculation.
+Indicates if the hour pixel is "lo" (1-6 inclusive) or "hi" (7-12 inclusive). This allows the hour pixel to overflow back to 1 after 6 o'clock, independent of AM/PM.
 
 ## Pixels [1:6]
 
@@ -22,3 +22,10 @@ If the hour and minute pixels overlap, they will form a purple pixel. Pixel [6] 
 ## Pixel [7]
 
 Indicates AM or PM.
+
+## Scheduling
+
+Updates every 3 minutes. I figure this is good enough since the resolution of the clock is so low anyway.
+
+    crontab -e
+    */3 * * * * python blinkt_clock.py
