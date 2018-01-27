@@ -10,16 +10,17 @@ b = 64
 v = .05
 
 set_clear_on_exit(False)
+
 clear()
 set_all(25, 25, 35, v)
 show()
 
-split_time = strftime('%H %M %p').split(' ')
+split_time = strftime('%I %M %p').split(' ')
 time_hour = int(split_time[0])
 time_minute = int(split_time[1])
 
 #Set the Lo/Hi and AM/PM bits 
-if  time_hour > 12:
+if time_hour > 6: 
     set_pixel(0, 0, g, 0, v)
 else:
     set_pixel(0, 0, 0, 0)
