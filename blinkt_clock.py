@@ -27,6 +27,8 @@ else:
 
 if split_time[2] == 'PM':
     set_pixel(7, 0, g, 0, v)
+else:
+    set_pixel(7, 0, 0, 0)
 
 #Check for hour/minute overlap and set accordingly
 minute_pixel = int(round(time_minute, -1) / 10)
