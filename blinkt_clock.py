@@ -1,4 +1,4 @@
-from blinkt import *
+import blinkt
 from time import strftime
 
 # [Lo/Hi] [1] [2] [3] [4] [5] [6] [AM/PM]
@@ -9,11 +9,11 @@ g = 64
 b = 64
 v = .05
 
-set_clear_on_exit(False)
+blinkt.set_clear_on_exit(False)
 
-clear()
-set_all(25, 25, 35, v)
-show()
+blinkt.clear()
+blinkt.set_all(25, 25, 35, v)
+blinkt.show()
 
 split_time = strftime('%I %M %p').split(' ')
 time_hour = int(split_time[0])
@@ -21,26 +21,25 @@ time_minute = int(split_time[1])
 
 #Set the Lo/Hi and AM/PM bits 
 if time_hour > 6: 
-    set_pixel(0, 0, g, 0, v)
+    blinkt.set_pixel(0, 0, g, 0, v)
 else:
-    set_pixel(0, 0, 0, 0)
+    blinkt.set_pixel(0, 0, 0, 0)
 
 if split_time[2] == 'PM':
-    set_pixel(7, 0, g, 0, v)
+    blinkt.set_pixel(7, 0, g, 0, v)
 else:
-    set_pixel(7, 0, 0, 0)
+    blinkt.set_pixel(7, 0, 0, 0)
 
 #Check for hour/minute overlap and set accordingly
 minute_pixel = int(round(time_minute, -1) / 10)
 hour_pixel = time_hour % 6 if time_hour % 6 > 0 else 6 
 
 if minute_pixel == 0: 
-    set_pixel(hour_pixel, 0, 0, b, v*2)
+    blinkt.set_pixel(hour_pixel, 0, 0, b, v*2)
 elif minute_pixel != hour_pixel:
-    set_pixel(minute_pixel, r, 0, 0, v)
-    set_pixel(hour_pixel, 0, 0, b, v)
+    blinkt.set_pixel(minute_pixel, r, 0, 0, v)
+    blinkt.set_pixel(hour_pixel, 0, 0, b, v)
 else:
-    set_pixel(minute_pixel, r, 0, b, v)
+    blinkt.set_pixel(minute_pixel, r, 0, b, v)
 
-show()
-
+blinkt.show()
