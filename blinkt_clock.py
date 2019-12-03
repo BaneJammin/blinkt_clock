@@ -7,7 +7,7 @@ from time import strftime
 r = 64
 g = 64
 b = 64
-v = .05
+v = .06
 
 blinkt.set_clear_on_exit(False)
 
